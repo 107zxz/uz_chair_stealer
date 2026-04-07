@@ -25,6 +25,11 @@ class Safe : Actor {
 		SAFE A -1;
 		Loop;
 	}
+	
+	override bool Used(Actor user) {
+		Self.Destroy();
+		return true;
+	}
 }
 
 class Table : Actor {

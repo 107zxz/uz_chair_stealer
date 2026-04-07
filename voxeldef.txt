@@ -1,0 +1,2 @@
+SAFEA="voxels/safea.kvx" {}
+TABLA="voxels/tabla.kvx" {}

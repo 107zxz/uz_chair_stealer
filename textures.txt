@@ -1,0 +1,2 @@
+// Model placeholder sprite
+sprite M000A0, 1, 1 {}

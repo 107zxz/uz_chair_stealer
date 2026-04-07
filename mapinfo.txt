@@ -1,0 +1,14 @@
+GameInfo {
+	StatusBarClass = "EmptyHud"
+	PlayerClasses = "GamePlayer"
+}
+
+skill normal {
+	SpawnFilter = normal
+}
+episode MAP01 {}
+
+DoomEdNums {
+	6660 = Safe
+	6661 = Table
+}

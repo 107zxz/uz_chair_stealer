@@ -36,10 +36,26 @@ class Table : Actor {
 	Default {
 	+SOLID;
 	Radius 12;
+	Height 25;
 	}
 	States {
 	Spawn:
 		TABL A -1;
+		Loop;
+	}
+}
+
+class Coffee : PowerupGiver {
+	Default {
+		+NOGRAVITY;
+		+Inventory.AUTOACTIVATE;
+		Powerup.Duration -5;
+		Powerup.Type "PowerSpeed";
+	}
+
+	States {
+	Spawn:
+		COFF A -1 Bright;
 		Loop;
 	}
 }

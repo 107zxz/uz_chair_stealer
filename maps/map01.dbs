@@ -14,18 +14,18 @@ maps
 			resource0
 			{
 				type = 1;
-				location = "/home/amy/repos/uzdoom/projdir";
+				location = "/home/amy/repos/uzdoom/uz_chair_stealer";
 				option1 = 0;
 				option2 = 0;
 				notfortesting = 0;
 				requiredarchives = "";
 			}
 		}
-		defaultfloortexture = "textures/-noflat-.png";
-		defaultceiltexture = "textures/-noflat-.png";
-		defaulttoptexture = "textures/-noflat-.png";
-		defaultwalltexture = "textures/-noflat-.png";
-		defaultbottomtexture = "textures/-noflat-.png";
+		defaultfloortexture = "NCARPET";
+		defaultceiltexture = "CARPET";
+		defaulttoptexture = "NWALL";
+		defaultwalltexture = "NWALL";
+		defaultbottomtexture = "NWALL";
 		custombrightness = 196;
 		customfloorheight = 0;
 		customceilheight = 128;
@@ -38,9 +38,9 @@ maps
 		overrideceilheight = false;
 		overridebrightness = false;
 		uselongtexturenames = false;
-		viewpositionx = 25.03118f;
-		viewpositiony = -294.4193f;
-		viewscale = 1.352537f;
+		viewpositionx = 9.819871f;
+		viewpositiony = -68.14387f;
+		viewscale = 3.862973f;
 		scriptcompiler = "zdoom_acs.cfg";
 		
 		grid
@@ -51,7 +51,7 @@ maps
 			backoffsety = 0;
 			backscalex = 100;
 			backscaley = 100;
-			gridsize = 16;
+			gridsize = 8;
 			gridrotate = 0;
 			gridoriginx = 0;
 			gridoriginy = 0;

@@ -11,4 +11,5 @@ episode MAP01 {}
 DoomEdNums {
 	6660 = Safe
 	6661 = Table
+	6662 = Coffee
 }

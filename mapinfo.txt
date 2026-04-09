@@ -12,4 +12,12 @@ DoomEdNums {
 	6660 = Safe
 	6661 = Table
 	6662 = Coffee
+	6663 = Lamp
 }
+
+defaultmap {
+	AirControl = 0.8
+	NoJump
+}
+
+map MAP01 "First Floor" {}

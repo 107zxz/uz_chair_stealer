@@ -1,3 +1,4 @@
 SAFEA="voxels/safea.kvx" {}
 TABLA="voxels/tabla.kvx" {}
 COFFA="voxels/coffa.kvx" {}
+LAMPA="voxels/lampa.kvx" {}

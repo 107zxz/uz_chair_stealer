@@ -28,6 +28,7 @@ class Safe : Actor {
 	+SOLID;
 	+NOGRAVITY;
 	+SHOOTABLE;
+	+NOBLOOD
 	Painchance 255;
 	Radius 12;
 	}

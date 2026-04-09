@@ -1,6 +1,9 @@
 GameInfo {
 	StatusBarClass = "EmptyHud"
+	AltHUDClass = "EmptyHUD"
 	PlayerClasses = "GamePlayer"
+	Border = 0, 0, "", "", "", "", "", "", "", ""
+	BorderFlat = "BLACK"
 }
 
 skill normal {
@@ -18,6 +21,7 @@ DoomEdNums {
 defaultmap {
 	AirControl = 0.8
 	NoJump
+	NoFreelook
 }
 
 map MAP01 "First Floor" {}

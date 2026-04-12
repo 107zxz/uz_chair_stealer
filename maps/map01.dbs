@@ -21,8 +21,8 @@ maps
 				requiredarchives = "";
 			}
 		}
-		defaultfloortexture = "NCARPET";
-		defaultceiltexture = "CARPET";
+		defaultfloortexture = "DIRT";
+		defaultceiltexture = "DIRT";
 		defaulttoptexture = "NWALL";
 		defaultwalltexture = "NWALL";
 		defaultbottomtexture = "NWALL";
@@ -38,9 +38,9 @@ maps
 		overrideceilheight = false;
 		overridebrightness = false;
 		uselongtexturenames = false;
-		viewpositionx = 278.0693f;
-		viewpositiony = 155.3428f;
-		viewscale = 3.862969f;
+		viewpositionx = -43.79168f;
+		viewpositiony = 686.2933f;
+		viewscale = 1.040398f;
 		scriptcompiler = "zdoom_acs.cfg";
 		
 		grid
@@ -51,7 +51,7 @@ maps
 			backoffsety = 0;
 			backscalex = 100;
 			backscaley = 100;
-			gridsize = 16;
+			gridsize = 64;
 			gridrotate = 0;
 			gridoriginx = 0;
 			gridoriginy = 0;
@@ -83,6 +83,49 @@ maps
 			autocloseonsuccess = true;
 			exitcodeiserror = true;
 			stderriserror = true;
+		}
+		
+		plugins
+		{
+			
+			threedfloormode
+			{
+				
+				controlsectorarea
+				{
+					usecustomtagrange = false;
+					outerleft = -512;
+					outerright = 0;
+					outertop = 512;
+					outerbottom = 0;
+				}
+			}
+		}
+		
+		scriptdocuments
+		{
+			
+			document0
+			{
+				filename = "DIALOGUE";
+				hash = 3588187714;
+				resource;
+				tabtype = 0;
+				scripttype = 18;
+				foldlevels = "0:0";
+			}
+			
+			document1
+			{
+				filename = "SCRIPTS";
+				hash = 3469170009;
+				resource;
+				tabtype = 0;
+				scripttype = 1;
+				caretposition = 24;
+				activetab = true;
+				foldlevels = "0:0,1,2,3,4";
+			}
 		}
 	}
 }

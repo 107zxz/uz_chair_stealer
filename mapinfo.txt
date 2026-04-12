@@ -16,12 +16,22 @@ DoomEdNums {
 	6661 = Table
 	6662 = Coffee
 	6663 = Lamp
+	6664 = Bulb
+	6665 = Ladder
+	6666 = WoodDoor
+	6667 = Bed
+	6668 = Shelf
+	6669 = Window
+	6670 = WindowSmashed
 }
 
 defaultmap {
 	AirControl = 0.8
 	NoJump
-	NoFreelook
+	Sky1 = "dirt";
+// 	NoFreelook
 }
 
-map MAP01 "First Floor" {}
+map MAP01 "First Floor" {
+
+}

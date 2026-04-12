@@ -79,12 +79,28 @@ class Coffee : PowerupGiver {
 class Lamp : Actor {
 	Default {
 	+NOGRAVITY;
+	+BRIGHT;
 	Height 24;
 	}
 	
 	States {
 	Spawn:
 		LAMP A -1;
+		Loop;
+	}
+}
+
+class Bulb : Actor {
+	Default {
+	+NOGRAVITY;
+	+BRIGHT;
+	Height 18;
+	Radius 2;
+	}
+	
+	States {
+	Spawn:
+		BULB A -1;
 		Loop;
 	}
 }
@@ -119,5 +135,72 @@ class GrabbyHand : Weapon {
 		}
 		TNT1 A 0 A_OverlayRotate(OverlayID(), 0);
 		Goto Ready;
+	}
+}
+
+class Ladder : Actor {
+	Default {
+	}
+	
+	States {
+	Spawn:
+		LADD B -1;
+		Loop;
+	}
+}
+
+class WoodDoor : Actor {
+	States {
+	Spawn:
+		DOOR A -1;
+		Loop;
+	}
+}
+
+class Bed : Actor {
+	Default {
+		+SOLID;
+	}
+		
+	States {
+	Spawn:
+		BEDD A -1;
+		Loop;
+	}
+}
+
+class Shelf : Actor {
+	Default {
+		+SOLID;
+	}
+		
+	States {
+	Spawn:
+		SHEL A -1;
+		Loop;
+	}
+}
+
+class Window : Actor {
+	Default {
+		+NOGRAVITY;
+	}
+		
+	States {
+	Spawn:
+		WIND A -1;
+		Loop;
+	}
+}
+
+class WindowSmashed : Actor {
+	Default {
+		+NOGRAVITY;
+	}
+		
+	States {
+	Spawn:
+		WIND B -1;
+		Loop;
 	}
 }

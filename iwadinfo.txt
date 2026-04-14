@@ -1,0 +1,5 @@
+IWad {
+	Name = "Amy Adventure 1"
+	AutoName = "Doom.AmyGame"
+	Game = "Doom"
+}

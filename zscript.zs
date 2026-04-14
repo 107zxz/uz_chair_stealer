@@ -1,6 +1,23 @@
-#include "zscript/weapons.zs"
+version "4.14.3"
 
-class EmptyHUD : BaseStatusBar {}
+#include "zscript/weapons.zs"
+#include "zscript/decorations.zs"
+
+class EmptyHUD : BaseStatusBar {
+	HUDFont uiFont;
+	
+	override void Init() {
+		Super.Init();
+// 		SetSize(32, 320, 200);
+		uiFont = HUDFont.Create(smallfont);
+	}
+
+	override void Draw (int state, double TicFrac) {
+		Super.Draw(state, TicFrac);
+		
+		DrawString(uiFont, "[|00 ]", (160,130), DI_SCREEN_CENTER|DI_TEXT_ALIGN_CENTER, Font.CR_Purple);
+	}
+}
 
 class GamePlayer : PlayerPawn {
 	Default {
@@ -8,6 +25,7 @@ class GamePlayer : PlayerPawn {
 		Player.JumpZ 16;
 		Player.Startitem "GrabbyHand";
 		Player.Startitem "NotLuger";
+		MeleeRange 80;
 		Speed 2;
 		
 	}
@@ -28,44 +46,6 @@ class GamePlayer : PlayerPawn {
 	}
 }
 
-class Safe : Actor {
-	Default {
-	+SOLID;
-	+NOGRAVITY;
-	+SHOOTABLE;
-	+NOBLOOD;
-	Painchance 255;
-	Radius 12;
-	}
-	States {
-	Spawn:
-		SAFE A -1;
-		Loop;
-	Pain:
-		TNT1 A 0 A_Remove(AAPTR_DEFAULT);
-		Stop;
-	}
-	
-	
-// 	override bool Used(Actor user) {
-// 		Self.Destroy();
-// 		return true;
-// 	}
-}
-
-class Table : Actor {
-	Default {
-	+SOLID;
-	+NOBLOOD;
-	Radius 12;
-	Height 25;
-	}
-	States {
-	Spawn:
-		TABL A -1;
-		Loop;
-	}
-}
 
 class Coffee : PowerupGiver {
 	Default {
@@ -81,36 +61,6 @@ class Coffee : PowerupGiver {
 		Loop;
 	}
 }
-
-class Lamp : Actor {
-	Default {
-	+NOGRAVITY;
-	+BRIGHT;
-	Height 24;
-	}
-	
-	States {
-	Spawn:
-		LAMP A -1;
-		Loop;
-	}
-}
-
-class Bulb : Actor {
-	Default {
-	+NOGRAVITY;
-	+BRIGHT;
-	Height 18;
-	Radius 2;
-	}
-	
-	States {
-	Spawn:
-		BULB A -1;
-		Loop;
-	}
-}
-
 
 
 class ToonPuff : Actor {
@@ -150,6 +100,7 @@ class WoodDoor : Actor {
 		+SOLID;
 		PainChance 255;
 		Height 80;
+		Radius 15;
 	}
 
 	States {
@@ -159,7 +110,8 @@ class WoodDoor : Actor {
 	Pain:
 		TNT1 A 0 {
 		
-			if (AngleTo(players[0].mo) > 0.5) return;
+			let door_angle = absangle(angle, AngleTo(players[0].mo));
+			if (door_angle > 90) return;
 		
 			// Close all other doors
 			let doorit = ThinkerIterator.Create("WoodDoor");
@@ -182,62 +134,6 @@ class WoodDoor : Actor {
 		}
 		DOOR A -1;
 		Goto Spawn;
-	}
-}
-
-class Bed : Actor {
-	Default {
-		+SOLID;
-	}
-		
-	States {
-	Spawn:
-		BEDD A -1;
-		Loop;
-	}
-}
-
-class Shelf : Actor {
-	Default {
-		+SOLID;
-	}
-		
-	States {
-	Spawn:
-		SHEL A -1;
-		Loop;
-	}
-}
-
-class Window : Actor {
-	Default {
-		+NOGRAVITY;
-	}
-		
-	States {
-	Spawn:
-		WIND A -1;
-		Loop;
-	}
-}
-
-class WindowSmashed : Actor {
-	Default {
-		+NOGRAVITY;
-	}
-		
-	States {
-	Spawn:
-		WIND B -1;
-		Loop;
-	}
-}
-
-class WifiExtender : Actor {
-	States {
-	Spawn:
-		WIFI A -1 BRIGHT;
-		Loop;
 	}
 }
 

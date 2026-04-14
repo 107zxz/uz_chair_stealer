@@ -1,6 +1,6 @@
 GameInfo {
 	StatusBarClass = "EmptyHud"
-	AltHUDClass = "EmptyHUD"
+// 	AltHUDClass = "EmptyHUD"
 	PlayerClasses = "GamePlayer"
 	Border = 0, 0, "", "", "", "", "", "", "", ""
 	BorderFlat = "BLACK"

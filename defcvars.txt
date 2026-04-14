@@ -1,0 +1,6 @@
+version 228
+
+// Visual Stuff
+set wipetype 0
+set MoveBob 0.1
+set Crosshair 0

@@ -23,15 +23,20 @@ DoomEdNums {
 	6668 = Shelf
 	6669 = Window
 	6670 = WindowSmashed
+	6671 = WifiExtender
+	6672 = FireChase
+	6673 = NotLuger
 }
 
 defaultmap {
 	AirControl = 0.8
 	NoJump
-	Sky1 = "dirt";
+	Sky1 = "skye"
 // 	NoFreelook
 }
 
 map MAP01 "First Floor" {
 
 }
+
+map MAP02 "Testing Map" {}

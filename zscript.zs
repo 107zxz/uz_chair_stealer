@@ -1,3 +1,5 @@
+#include "zscript/weapons.zs"
+
 class EmptyHUD : BaseStatusBar {}
 
 class GamePlayer : PlayerPawn {
@@ -5,7 +7,9 @@ class GamePlayer : PlayerPawn {
 		Player.DisplayName "Amy";
 		Player.JumpZ 16;
 		Player.Startitem "GrabbyHand";
+		Player.Startitem "NotLuger";
 		Speed 2;
+		
 	}
 	States {
 	Spawn:
@@ -19,7 +23,8 @@ class GamePlayer : PlayerPawn {
 	override void Tick() {
 		Super.Tick();
 		
-		vel *= 0.8;
+		vel.X *= 0.8;
+		vel.Y *= 0.8;
 	}
 }
 
@@ -28,7 +33,7 @@ class Safe : Actor {
 	+SOLID;
 	+NOGRAVITY;
 	+SHOOTABLE;
-	+NOBLOOD
+	+NOBLOOD;
 	Painchance 255;
 	Radius 12;
 	}
@@ -51,6 +56,7 @@ class Safe : Actor {
 class Table : Actor {
 	Default {
 	+SOLID;
+	+NOBLOOD;
 	Radius 12;
 	Height 25;
 	}
@@ -105,36 +111,23 @@ class Bulb : Actor {
 	}
 }
 
-class GrabbyHand : Weapon {
+
+
+class ToonPuff : Actor {
 	Default {
-		
+		+NOBLOCKMAP
+		+NOGRAVITY
+		+ALLOWPARTICLES
+		+RANDOMIZE
+		+FORCEXYBILLBOARD
+		Scale 0.3;
 	}
-	
 	States {
 	Spawn:
-		HAND A -1;
+		HAND F 3 BRIGHT;
+	Melee:
+		HAND F 3 BRIGHT;
 		Stop;
-	Ready:
-		HAND A 1 A_WeaponReady;
-		Loop;
-	Select:
-		HAND A 1 A_Raise;
-		Loop;
-	Deselect:
-		HAND A 1 A_Lower;
-		Loop;
-	Fire:
-		HAND AAA 1 {
-			A_OverlayPivot(OverlayID(), 0, 2);
-			A_OverlayRotate(OverlayID(), 360/16, WOF_ADD);
-		}
-		TNT1 A 0 A_CustomPunch(10, true, CPF_NOTURN);
-		HAND AAAAAAAAAAAAA 1 {
-			A_OverlayPivot(OverlayID(), 0, 2);
-			A_OverlayRotate(OverlayID(), 360/16, WOF_ADD);
-		}
-		TNT1 A 0 A_OverlayRotate(OverlayID(), 0);
-		Goto Ready;
 	}
 }
 
@@ -150,10 +143,45 @@ class Ladder : Actor {
 }
 
 class WoodDoor : Actor {
+	Default {
+		+SHOOTABLE;
+		+DONTTHRUST;
+		+NOBLOOD;
+		+SOLID;
+		PainChance 255;
+		Height 80;
+	}
+
 	States {
 	Spawn:
 		DOOR A -1;
-		Loop;
+		Stop;
+	Pain:
+		TNT1 A 0 {
+		
+			if (AngleTo(players[0].mo) > 0.5) return;
+		
+			// Close all other doors
+			let doorit = ThinkerIterator.Create("WoodDoor");
+			Actor door;
+			while (door = WoodDoor(doorit.Next())) {
+				if (door.bSOLID) continue;
+			
+				door.bNOCLIP = true;
+				door.Warp(door, 20, -25, 0, -90);
+				door.bNOCLIP = false;
+				door.bSOLID = true;
+				door.bSHOOTABLE = true;
+			}
+			
+			bNOCLIP = true;
+			A_Warp(AAPTR_DEFAULT, -25, -20, 0, 90);
+			bNOCLIP = false;
+			bSOLID = false;
+			bSHOOTABLE = false;
+		}
+		DOOR A -1;
+		Goto Spawn;
 	}
 }
 
@@ -204,3 +232,30 @@ class WindowSmashed : Actor {
 		Loop;
 	}
 }
+
+class WifiExtender : Actor {
+	States {
+	Spawn:
+		WIFI A -1 BRIGHT;
+		Loop;
+	}
+}
+
+class FireChase : Actor {
+	Default {
+		+CANPASS;
+		+ISMONSTER;
+		+NOCLIP;
+		+FLOAT;
+		Speed 5;
+	}
+	States {
+	Spawn:
+		FIRE AABBCC 1 BRIGHT A_Chase;
+		Loop;
+	Melee:
+		TNT1 A 0 A_CustomMeleeAttack(666);
+		Goto Spawn;
+	}
+}
+

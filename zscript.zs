@@ -2,6 +2,7 @@ version "4.14.3"
 
 #include "zscript/weapons.zs"
 #include "zscript/decorations.zs"
+#include "zscript/enemies.zs"
 
 class EmptyHUD : BaseStatusBar {
 	HUDFont uiFont;

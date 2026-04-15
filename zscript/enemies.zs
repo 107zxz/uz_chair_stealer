@@ -1,0 +1,5 @@
+class SpearMine : Actor {
+	Default {
+		
+	}
+}

@@ -31,8 +31,7 @@ DoomEdNums {
 
 defaultmap {
 	AirControl = 0.8
-	NoJump
-	Sky1 = "skye"
+	Sky1 = "F_SKY1"
 // 	NoFreelook
 }
 

@@ -2,7 +2,7 @@ class HyperLight : Ammo {
 	Default {
 		+NOCLIP;
 		+Inventory.ALWAYSPICKUP;
-		Speed 8;
+		Speed 20;
 		Inventory.Amount 1;
 		Inventory.MaxAmount 3;
 		Inventory.PickupMessage "1 Ammo Restored";
@@ -82,9 +82,9 @@ class GrabbyHand : Weapon {
 class NotLuger : Weapon {
 	Default {
 		Weapon.SlotNumber 2;
-		Weapon.AmmoType "HyperLight";
-		Weapon.AmmoGive 3;
-		Weapon.AmmoUse 1;
+		Weapon.AmmoType2 "HyperLight";
+		Weapon.AmmoGive2 3;
+		Weapon.AmmoUse2 1;
 	}
 
 	States {
@@ -108,7 +108,7 @@ class NotLuger : Weapon {
 		TNT1 A 0 A_Lower;
 		LUGE B 1 A_Lower;
 		Loop;
-	Fire:
+	AltFire:
 		LUGE B 1 Offset(32,32) {
 			A_Overlay(-100, "Flash");
 			A_Quake(3, 4, 0, 400, 0);
@@ -118,7 +118,7 @@ class NotLuger : Weapon {
 			A_Overlay(100, "Spin");
 		}
 		LUGE CCCCCCCCCCCC 2 A_Quake(0.6, 2, 0, 400, 0);
-		LUGE B 12 Offset(-1,32);
+		LUGE B 2 Offset(-1,32);
 // 		LUGE B 1 Offset(12,32);
 		Goto Ready;
 	Spin:
@@ -173,6 +173,21 @@ class NotLuger : Weapon {
 			A_OverlayFlags(OverlayID(), PSPF_FLIP, true);
 		}
 		Stop;
+		
+	// Punch!
+	Fire:
+		LUGE B 21 A_Overlay(50, "Punch");
+		Goto Ready;
+	Punch:
+// 		HAND A 1;
+		HAND C 2 {
+// 			A_Overlay(-100, "Flash");
+			A_Quake(1.5, 4, 0, 400, 0);
+			A_CustomPunch(10, true, 0, "ToonPuff");
+		}
+		HAND B 7;
+		HAND CA 1;
+		Goto LightDone;
 	Flash:
 		LUGE F 3 BRIGHT A_Light2;
 		Goto LightDone;

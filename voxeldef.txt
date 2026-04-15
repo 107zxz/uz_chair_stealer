@@ -8,4 +8,5 @@ LADDB="voxels/laddb.kvx" {}
 DOORA="voxels/doora.kvx" {}
 BEDDA="voxels/bedda.kvx" {}
 SHELA="voxels/shela.kvx" {}
-PISGA="voxels/pisga.kvx" {}
+LUGAA="voxels/lugaa.kvx" {}
+DEVLA="voxels/devla.kvx" {}

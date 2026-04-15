@@ -1,6 +1,31 @@
+class HyperLight : Ammo {
+	Default {
+		+NOCLIP;
+		+Inventory.ALWAYSPICKUP;
+		Speed 8;
+		Inventory.Amount 1;
+		Inventory.MaxAmount 3;
+		Inventory.PickupMessage "1 Ammo Restored";
+	}
+	
+	States {
+	Spawn:
+		DEVL A 2 A_Chase;
+		Loop;
+	Melee:
+		DEVL A 1 {
+			Touch(players[0].mo);
+			Destroy();
+		}
+		Stop;
+	}
+}
+
 class GrabbyHand : Weapon {
 	Default {
 		Weapon.SlotNumber 1;
+		Weapon.AmmoType "HyperLight";
+		Weapon.AmmoGive 3;
 	}
 	
 	States {
@@ -57,6 +82,9 @@ class GrabbyHand : Weapon {
 class NotLuger : Weapon {
 	Default {
 		Weapon.SlotNumber 2;
+		Weapon.AmmoType "HyperLight";
+		Weapon.AmmoGive 3;
+		Weapon.AmmoUse 1;
 	}
 
 	States {

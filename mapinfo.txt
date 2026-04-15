@@ -26,6 +26,7 @@ DoomEdNums {
 	6671 = WifiExtender
 	6672 = FireChase
 	6673 = NotLuger
+	6674 = HyperLight
 }
 
 defaultmap {

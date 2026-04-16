@@ -27,7 +27,6 @@ class GamePlayer : PlayerPawn {
 	Default {
 		Player.DisplayName "Amy";
 		Player.JumpZ 16;
-		Player.Startitem "GrabbyHand";
 		Player.Startitem "NotLuger";
 		MeleeRange 80;
 		Speed 2;
@@ -137,7 +136,7 @@ class WoodDoor : Actor {
 			bSHOOTABLE = false;
 			
 			// Spawn something nice :)
-			A_SpawnItem("HyperLight");
+			A_SpawnItem("HyperLight", 30, 32);
 		}
 		DOOR A -1;
 		Goto Spawn;

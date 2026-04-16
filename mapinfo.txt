@@ -4,6 +4,7 @@ GameInfo {
 	PlayerClasses = "GamePlayer"
 	Border = 0, 0, "", "", "", "", "", "", "", ""
 	BorderFlat = "BLACK"
+	PickupColor = "Pink"
 }
 
 skill normal {
@@ -32,6 +33,7 @@ DoomEdNums {
 defaultmap {
 	AirControl = 0.8
 	Sky1 = "F_SKY1"
+	
 // 	NoFreelook
 }
 

@@ -4,3 +4,5 @@ version 228
 set wipetype 0
 set MoveBob 0.1
 set Crosshair 0
+
+set cl_run 1

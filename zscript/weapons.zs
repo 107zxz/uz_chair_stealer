@@ -1,8 +1,11 @@
 class HyperLight : Ammo {
 	Default {
 		+NOCLIP;
+		+NOBLOCKMAP;
+		+NOGRAVITY;
+		+NODROPOFF;
 		+Inventory.ALWAYSPICKUP;
-		Speed 20;
+		Speed 1;
 		Inventory.Amount 1;
 		Inventory.MaxAmount 3;
 		Inventory.PickupMessage "1 Ammo Restored";
@@ -10,10 +13,14 @@ class HyperLight : Ammo {
 	
 	States {
 	Spawn:
-		DEVL A 2 A_Chase;
+		DEVL A 1 BRIGHT {
+			SetOrigin(pos + Vec3To(players[0].mo).Unit()*10, true);
+			A_Chase();
+		}
 		Loop;
 	Melee:
 		DEVL A 1 {
+			
 			Touch(players[0].mo);
 			Destroy();
 		}

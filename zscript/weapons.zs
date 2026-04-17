@@ -15,7 +15,10 @@ class HyperLight : Ammo {
 	Spawn:
 		DEVL A 1 BRIGHT {
 			SetOrigin(pos + Vec3To(players[0].mo).Unit()*10, true);
-			A_Chase();
+			if ((pos - players[0].mo.pos).Length() < 20) {
+				Touch(players[0].mo);
+				Destroy();
+			}
 		}
 		Loop;
 	Melee:
@@ -25,64 +28,6 @@ class HyperLight : Ammo {
 			Destroy();
 		}
 		Stop;
-	}
-}
-
-class GrabbyHand : Weapon {
-	Default {
-		Weapon.SlotNumber 1;
-		Weapon.AmmoType "HyperLight";
-		Weapon.AmmoGive 3;
-	}
-	
-	States {
-	Spawn:
-		HAND A -1;
-		Stop;
-	Ready:
-		HAND A 1 A_WeaponReady;
-		Loop;
-	Select:
-		TNT1 A 0 A_Raise;
-		TNT1 A 0 A_Raise;
-		TNT1 A 0 A_Raise;
-		TNT1 A 0 A_Raise;
-		HAND A 1 A_Raise;
-		Loop;
-	Deselect:
-		TNT1 A 0 A_Lower;
-		TNT1 A 0 A_Lower;
-		TNT1 A 0 A_Lower;
-		TNT1 A 0 A_Lower;
-		HAND A 1 A_Lower;
-		Loop;
-// 	Fire:
-// 		HAND AAA 1 {
-// 			A_OverlayPivot(OverlayID(), 0, 2);
-// 			A_OverlayRotate(OverlayID(), 360/16, WOF_ADD);
-// 		}
-// 		TNT1 A 0 A_CustomPunch(10, true, CPF_NOTURN);
-// 		HAND AAAAAAAAAAAAA 1 {
-// 			A_OverlayPivot(OverlayID(), 0, 2);
-// 			A_OverlayRotate(OverlayID(), 360/16, WOF_ADD);
-// 		}
-// 		TNT1 A 0 A_OverlayRotate(OverlayID(), 0);
-// 		Goto Ready;
-	Fire:
-		HAND A 2;
-		HAND C 2 {
-// 			A_Overlay(-100, "Flash");
-			A_Quake(1.5, 4, 0, 400, 0);
-			A_CustomPunch(10, true, 0, "ToonPuff");
-		}
-		HAND B 7 {
-			
-		}
-		HAND BCAAA 2;
-		Goto Ready;
-// 	Flash:
-// 		HAND F 3 BRIGHT A_Light1;
-// 		Goto LightDone;
 	}
 }
 

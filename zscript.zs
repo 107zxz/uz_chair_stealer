@@ -28,6 +28,7 @@ class GamePlayer : PlayerPawn {
 		Player.DisplayName "Amy";
 		Player.JumpZ 16;
 		Player.Startitem "NotLuger";
+		Player.Startitem "HyperLight";
 		MeleeRange 80;
 		Speed 2;
 		

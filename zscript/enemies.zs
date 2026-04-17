@@ -6,10 +6,11 @@ class SpearMine : Actor {
 		+DONTTHRUST;
 		Monster;
 		-SOLID;
-		Height 8;
+		Height 32;
 		Radius 64;
 		PainChance 255;
 		Speed 0;
+		Health 999999999;
 	}
 	
 	States {

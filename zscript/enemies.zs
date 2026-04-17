@@ -3,10 +3,13 @@ class SpearMine : Actor {
 	Default {
 		+FORCEXYBILLBOARD;
 		+NOGRAVITY;
+		+DONTTHRUST;
 		Monster;
 		-SOLID;
+		Height 8;
+		Radius 64;
 		PainChance 255;
-		Speed 6;
+		Speed 0;
 	}
 	
 	States {
@@ -22,11 +25,14 @@ class SpearMine : Actor {
 		MINE A 5 A_FaceTarget;
 		MINE A 10 BRIGHT {
 			A_FaceTarget();
-			A_MonsterRail();
 		}
-		MINE A 30 BRIGHT {
+		MINE A 20 BRIGHT {
 			A_FaceTarget();
+			A_MonsterRail();
 			target.Vel3DFromAngle((target.pos-pos).Length()/4, target.AngleTo(self), target.PitchTo(self));
+			
+			// Spawn a gem!
+			A_SpawnItem("HyperLight", 32, 32);
 		}
 		Goto See;
 	}

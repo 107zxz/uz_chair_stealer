@@ -43,4 +43,6 @@ map MAP01 "First Floor" {
 
 }
 
-map MAP02 "Testing Map" {}
+map MAP02 "Testing Map" {
+	Gravity = 400
+}

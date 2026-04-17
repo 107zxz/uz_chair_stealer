@@ -28,6 +28,8 @@ DoomEdNums {
 	6672 = FireChase
 	6673 = NotLuger
 	6674 = HyperLight
+	6675 = SpearMine
+	6676 = MineChain
 }
 
 defaultmap {

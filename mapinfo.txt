@@ -15,7 +15,6 @@ episode MAP01 {}
 DoomEdNums {
 	6660 = Safe
 	6661 = Table
-	6662 = Coffee
 	6663 = Lamp
 	6664 = Bulb
 	6665 = Ladder
@@ -35,14 +34,14 @@ DoomEdNums {
 defaultmap {
 	AirControl = 0.8
 	Sky1 = "F_SKY1"
-	
+	Gravity = 400
 // 	NoFreelook
 }
 
 map MAP01 "First Floor" {
-
+    Next = "MAP02"
 }
 
 map MAP02 "Testing Map" {
-	Gravity = 400
+	
 }

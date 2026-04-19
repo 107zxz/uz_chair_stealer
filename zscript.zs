@@ -3,25 +3,8 @@ version "4.14.3"
 #include "zscript/weapons.zs"
 #include "zscript/decorations.zs"
 #include "zscript/enemies.zs"
+#include "zscript/hud.zs"
 
-class EmptyHUD : BaseStatusBar {
-	HUDFont uiFont;
-	
-	override void Init() {
-		Super.Init();
-		uiFont = HUDFont.Create(smallfont);
-	}
-
-	override void Draw (int state, double TicFrac) {
-		Super.Draw(state, TicFrac);
-		
-		Ammo am1, am2;
-		int am1amt, am2amt;
-		[am1, am2, am1amt, am2amt] = GetCurrentAmmo();
-		
-		DrawString(uiFont, "[" .. am1amt .. "]", (160,130), DI_SCREEN_CENTER|DI_TEXT_ALIGN_CENTER, Font.CR_Purple);
-	}
-}
 
 class GamePlayer : PlayerPawn {
 	Default {
@@ -31,7 +14,6 @@ class GamePlayer : PlayerPawn {
 		Player.Startitem "HyperLight";
 		MeleeRange 80;
 		Speed 2;
-		
 	}
 	States {
 	Spawn:
@@ -49,23 +31,6 @@ class GamePlayer : PlayerPawn {
 		vel.Y *= 0.8;
 	}
 }
-
-
-class Coffee : PowerupGiver {
-	Default {
-	+NOGRAVITY;
-	+Inventory.AUTOACTIVATE;
-	Powerup.Duration -5;
-	Powerup.Type "PowerSpeed";
-	}
-
-	States {
-	Spawn:
-		COFF A -1;
-		Loop;
-	}
-}
-
 
 class ToonPuff : Actor {
 	Default {
@@ -103,7 +68,7 @@ class WoodDoor : Actor {
 		+NOBLOOD;
 		+SOLID;
 		PainChance 255;
-		Height 80;
+		Height 60;
 		Radius 15;
 	}
 
@@ -124,16 +89,17 @@ class WoodDoor : Actor {
 				if (door.bSOLID) continue;
 			
 				door.bNOCLIP = true;
-				door.Warp(door, 20, -25, 0, -90);
+				door.Warp(door, 21, -20, 0, -90);
 				door.bNOCLIP = false;
 				door.bSOLID = true;
 				door.bSHOOTABLE = true;
 			}
 			
 			bNOCLIP = true;
-			A_Warp(AAPTR_DEFAULT, -25, -20, 0, 90);
-			bNOCLIP = false;
 			bSOLID = false;
+			A_Warp(AAPTR_DEFAULT, -20, -21, 0, 90);
+			bNOCLIP = false;
+			
 			bSHOOTABLE = false;
 			
 			// Spawn something nice :)

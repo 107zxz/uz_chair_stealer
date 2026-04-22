@@ -60,32 +60,61 @@ class MineChain : Actor {
 class ZapZoob : Actor {
 	Default {
 		Monster;
+		Speed 20;
 	}
 	
 	States {
 	Spawn:
-		ZOOB A -1;
+		ZOOB A 6 BRIGHT {
+			bXFLIP=false;
+			A_FaceMaster();
+			A_CustomRailgun(0, 0, "yellow", "cyan");
+		}
+		ZOOB A 6 BRIGHT {
+			bXFLIP=true;
+			A_Look();
+		}
 		Loop;
+	See:
+		ZOOB A 4 BRIGHT {
+			bXFLIP=false;
+			A_FaceMaster();
+			A_CustomRailgun(0, 0, "yellow", "cyan");
+			A_Chase();
+		}
+		ZOOB A 4 BRIGHT {
+			bXFLIP=true;
+			A_Chase();
+		}
+		Loop;
+	Death:
+		TNT1 A 0 {self.Destroy();}
+		Stop;
 	}
 }
 
 class ZoobRadiator : Actor {
 	Default {
-	
+		+SHOOTABLE;
+		Health 1;
 	}
 	
 	States {
 	Spawn:
 		RADI A -1;
+		Loop;
+	Death:
+		TNT1 A 0 {
+			A_SpawnItemEx("HyperLight");
+			A_KillChildren();
+			self.Destroy();
+		}
 		Stop;
 	}
-	
-	bool success;
-	Actor myZoob;
 	
 	override void BeginPlay() {
 		Super.BeginPlay();
 		
-		[success, myZoob] = A_SpawnItem("ZapZoob", 64);
+		A_SpawnItemEx("ZapZoob", 64, 0, 0, 0, 0, 0, 0, SXF_SETMASTER);
 	}
 }

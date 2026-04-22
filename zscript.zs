@@ -83,17 +83,17 @@ class WoodDoor : Actor {
 			if (door_angle > 90) return;
 		
 			// Close all other doors
-			let doorit = ThinkerIterator.Create("WoodDoor");
-			Actor door;
-			while (door = WoodDoor(doorit.Next())) {
-				if (door.bSOLID) continue;
-			
-				door.bNOCLIP = true;
-				door.Warp(door, 21, -20, 0, -90);
-				door.bNOCLIP = false;
-				door.bSOLID = true;
-				door.bSHOOTABLE = true;
-			}
+			// let doorit = ThinkerIterator.Create("WoodDoor");
+			// Actor door;
+			// while (door = WoodDoor(doorit.Next())) {
+			// 	if (door.bSOLID) continue;
+			// 
+			// 	door.bNOCLIP = true;
+			// 	door.Warp(door, 21, -20, 0, -90);
+			// 	door.bNOCLIP = false;
+			// 	door.bSOLID = true;
+			// 	door.bSHOOTABLE = true;
+			// }
 			
 			bNOCLIP = true;
 			bSOLID = false;

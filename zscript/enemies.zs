@@ -4,6 +4,7 @@ class SpearMine : Actor {
 		+FORCEXYBILLBOARD;
 		+NOGRAVITY;
 		+DONTTHRUST;
+		+NOBLOOD;
 		Monster;
 		-SOLID;
 		Height 32;
@@ -30,10 +31,12 @@ class SpearMine : Actor {
 		MINE A 20 BRIGHT {
 			A_FaceTarget();
 			A_MonsterRail();
-			target.Vel3DFromAngle((target.pos-pos).Length()/4, target.AngleTo(self), target.PitchTo(self));
+// 			target.Vel3DFromAngle((target.pos-pos).Length()/4, target.AngleTo(self), target.PitchTo(self));
+			target.Vel3DFromAngle((target.pos-pos).Length()/3, target.AngleTo(self), target.PitchTo(self));
+			target.GiveInventory("HyperLight", 1);
 			
 			// Spawn a gem!
-			A_SpawnItem("HyperLight", 32, 32);
+			//A_SpawnItem("HyperLight", 32, 32);
 		}
 		Goto See;
 	}
@@ -50,5 +53,39 @@ class MineChain : Actor {
 	Spawn:
 		CAIN A -1;
 		Stop;
+	}
+}
+
+// Zap Gremlin
+class ZapZoob : Actor {
+	Default {
+		Monster;
+	}
+	
+	States {
+	Spawn:
+		ZOOB A -1;
+		Loop;
+	}
+}
+
+class ZoobRadiator : Actor {
+	Default {
+	
+	}
+	
+	States {
+	Spawn:
+		RADI A -1;
+		Stop;
+	}
+	
+	bool success;
+	Actor myZoob;
+	
+	override void BeginPlay() {
+		Super.BeginPlay();
+		
+		[success, myZoob] = A_SpawnItem("ZapZoob", 64);
 	}
 }

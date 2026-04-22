@@ -29,6 +29,7 @@ DoomEdNums {
 	6674 = HyperLight
 	6675 = SpearMine
 	6676 = MineChain
+	6677 = ZoobRadiator
 }
 
 defaultmap {

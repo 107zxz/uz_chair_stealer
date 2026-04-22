@@ -9,3 +9,4 @@ BEDDA="voxels/bedda.kvx" {}
 SHELA="voxels/shela.kvx" {}
 LUGAA="voxels/lugaa.kvx" {}
 DEVLA="voxels/devla.kvx" { Spin = 720 }
+RADIA="voxels/radia.kvx" {}

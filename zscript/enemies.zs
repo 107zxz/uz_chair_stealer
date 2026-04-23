@@ -33,7 +33,7 @@ class SpearMine : Actor {
 			A_MonsterRail();
 // 			target.Vel3DFromAngle((target.pos-pos).Length()/4, target.AngleTo(self), target.PitchTo(self));
 			target.Vel3DFromAngle((target.pos-pos).Length()/3, target.AngleTo(self), target.PitchTo(self));
-			target.GieInventory("HyperLight", 1);
+			target.GiveInventory("HyperLight", 1);
 			
 			// Spawn a gem!
 			//A_SpawnItem("HyperLight", 32, 32);
@@ -62,6 +62,7 @@ class ZapZoob : Actor {
 		Monster;
 		+NOBLOOD;
 		+NOTAUTOAIMED;
+		+AMBUSH;
 		Speed 10;
 		Radius 10;
 		Height 8;

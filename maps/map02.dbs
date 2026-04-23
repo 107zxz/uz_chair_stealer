@@ -18,6 +18,7 @@ maps
 				option1 = 0;
 				option2 = 0;
 				notfortesting = 0;
+				requiredarchives = "";
 			}
 		}
 		defaultfloortexture = "F_SKY1";
@@ -37,9 +38,9 @@ maps
 		overrideceilheight = false;
 		overridebrightness = false;
 		uselongtexturenames = false;
-		viewpositionx = -2918.512f;
-		viewpositiony = -1055.091f;
-		viewscale = 2.470636f;
+		viewpositionx = -2998.087f;
+		viewpositiony = -1070.849f;
+		viewscale = 2.470632f;
 		scriptcompiler = "zdoom_acs.cfg";
 		
 		grid
@@ -50,7 +51,7 @@ maps
 			backoffsety = 0;
 			backscalex = 100;
 			backscaley = 100;
-			gridsize = 4;
+			gridsize = 8;
 			gridrotate = 0;
 			gridoriginx = 0;
 			gridoriginy = 0;

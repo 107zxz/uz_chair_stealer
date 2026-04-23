@@ -33,7 +33,7 @@ class SpearMine : Actor {
 			A_MonsterRail();
 // 			target.Vel3DFromAngle((target.pos-pos).Length()/4, target.AngleTo(self), target.PitchTo(self));
 			target.Vel3DFromAngle((target.pos-pos).Length()/3, target.AngleTo(self), target.PitchTo(self));
-			target.GiveInventory("HyperLight", 1);
+			target.GieInventory("HyperLight", 1);
 			
 			// Spawn a gem!
 			//A_SpawnItem("HyperLight", 32, 32);
@@ -60,7 +60,11 @@ class MineChain : Actor {
 class ZapZoob : Actor {
 	Default {
 		Monster;
-		Speed 20;
+		+NOBLOOD;
+		+NOTAUTOAIMED;
+		Speed 10;
+		Radius 10;
+		Height 8;
 	}
 	
 	States {
@@ -75,6 +79,14 @@ class ZapZoob : Actor {
 			A_Look();
 		}
 		Loop;
+	Melee:
+		ZOOB A 10 BRIGHT {
+			Thrust();
+			AddZ(32);
+		}
+		Goto See;
+	Missile:
+		ZOOB A 4 BRIGHT Thrust;
 	See:
 		ZOOB A 4 BRIGHT {
 			bXFLIP=false;
@@ -88,7 +100,9 @@ class ZapZoob : Actor {
 		}
 		Loop;
 	Death:
-		TNT1 A 0 {self.Destroy();}
+		ZOOB A 9 A_Quake(7, 4, 0, 400, 0);
+		HAND F 10 BRIGHT;
+		TNT1 A 0 Destroy();
 		Stop;
 	}
 }
@@ -96,6 +110,7 @@ class ZapZoob : Actor {
 class ZoobRadiator : Actor {
 	Default {
 		+SHOOTABLE;
+		+NOBLOOD
 		Health 1;
 	}
 	
@@ -104,10 +119,13 @@ class ZoobRadiator : Actor {
 		RADI A -1;
 		Loop;
 	Death:
+		FIRE A 3 BRIGHT A_KillChildren;
+		FIRE B 3 BRIGHT;
+		FIRE C 3 BRIGHT;
 		TNT1 A 0 {
 			A_SpawnItemEx("HyperLight");
-			A_KillChildren();
-			self.Destroy();
+			
+			Destroy();
 		}
 		Stop;
 	}

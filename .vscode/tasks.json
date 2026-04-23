@@ -1,0 +1,41 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "uzdoom",
+            "type": "shell",
+            "command": "uzdoom -iwad base.ipk3 -file .",
+            "problemMatcher": {
+                "owner": "uzdoom",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}"
+                ],
+                "pattern": [
+                    // {
+                        // "regexp": "^Script error, \".+:(.*)\" line (\\d+):$",
+                    //     "file": 1,
+                    //     "line": 2,
+                    //     "message": 3
+                    // },
+                    {
+                        "regexp": "^Script error, \".+:(.*)\" (\\w+) (\\d+):$",
+                        "file": 1,
+                        "line": 3,
+                        // "message": 2
+                    },
+                    {
+                        "regexp": "^(.*)$",
+                        "message": 1
+                    }
+                ]
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

@@ -68,12 +68,16 @@ class ZapZoob : Actor {
 		Height 8;
 	}
 	
+	void ShootTheNine() {
+		A_FaceMaster();
+		A_CustomRailgun(0, 0, "yellow", "cyan");
+	}
+	
 	States {
 	Spawn:
 		ZOOB A 6 BRIGHT {
 			bXFLIP=false;
-			A_FaceMaster();
-			A_CustomRailgun(0, 0, "yellow", "cyan");
+			ShootTheNine();
 		}
 		ZOOB A 6 BRIGHT {
 			bXFLIP=true;
@@ -92,7 +96,7 @@ class ZapZoob : Actor {
 		ZOOB A 4 BRIGHT {
 			bXFLIP=false;
 			A_FaceMaster();
-			A_CustomRailgun(0, 0, "yellow", "cyan");
+			ShootTheNine();
 			A_Chase();
 		}
 		ZOOB A 4 BRIGHT {
@@ -113,6 +117,8 @@ class ZoobRadiator : Actor {
 		+SHOOTABLE;
 		+NOBLOOD
 		Health 1;
+		Height 32;
+		Radius 16;
 	}
 	
 	States {

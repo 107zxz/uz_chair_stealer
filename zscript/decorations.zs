@@ -51,8 +51,8 @@ class Table : Actor {
 	Default {
 	+SOLID;
 	+NOBLOOD;
-	Radius 12;
-	Height 25;
+	Radius 24;
+	Height 32;
 	}
 	States {
 	Spawn:
@@ -65,6 +65,8 @@ class Table : Actor {
 class Bed : Actor {
 	Default {
 		+SOLID;
+		Radius 48;
+		Height 24;
 	}
 		
 	States {

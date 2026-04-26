@@ -4,6 +4,7 @@ version "4.14.3"
 #include "zscript/decorations.zs"
 #include "zscript/enemies.zs"
 #include "zscript/hud.zs"
+#include "zscript/npcs.zs"
 
 
 class GamePlayer : PlayerPawn {

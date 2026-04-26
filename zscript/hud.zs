@@ -14,6 +14,6 @@ class EmptyHUD : BaseStatusBar {
 		[am1, am2, am1amt, am2amt] = GetCurrentAmmo();
 		
 		DrawString(uiFont, "[" .. am1amt .. "]", (160,130), DI_SCREEN_CENTER|DI_TEXT_ALIGN_CENTER, Font.CR_Purple);
-		DrawString(uiFont, "[" .. Get .. "]", (160,180), DI_SCREEN_CENTER|DI_TEXT_ALIGN_CENTER, Font.CR_Purple);
+		DrawString(uiFont, "[" .. CPlayer.health .. "]", (160,140), DI_SCREEN_CENTER|DI_TEXT_ALIGN_CENTER, Font.CR_Red);
 	}
 }

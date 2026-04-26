@@ -30,6 +30,7 @@ DoomEdNums {
 	6675 = SpearMine
 	6676 = MineChain
 	6677 = ZoobRadiator
+	6678 = Vending
 }
 
 defaultmap {

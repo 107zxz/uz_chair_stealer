@@ -70,8 +70,13 @@ class NotLuger : Weapon {
 			A_Overlay(100, "Spin");
 		}
 		LUGE CCCCCCCCCCCC 2 A_Quake(0.6, 2, 0, 400, 0);
+		
+		// Start reloading if we're empty
+		TNT1 A 0 A_JumpIfNoAmmo("Reload");
+		
 		LUGE B 2 Offset(-1,32);
 // 		LUGE B 1 Offset(12,32);
+		
 		Goto Ready;
 	Spin:
 		LUGE S 2 BRIGHT {
@@ -125,6 +130,13 @@ class NotLuger : Weapon {
 			A_OverlayFlags(OverlayID(), PSPF_FLIP, true);
 		}
 		Stop;
+	Reload:
+		LUGE S 3 BRIGHT Offset(0,48);
+		LUGE S 2 BRIGHT Offset(48,64);
+		TNT1 A 60;
+		LUGE S 3 BRIGHT Offset(48,64);
+		LUGE S 2 BRIGHT Offset(0,48) A_GiveInventory("HyperLight", 1);
+		Goto Ready;
 		
 	// Punch!
 	Fire:
@@ -135,7 +147,7 @@ class NotLuger : Weapon {
 		HAND C 2 {
 // 			A_Overlay(-100, "Flash");
 			A_Quake(1.5, 4, 0, 400, 0);
-			A_CustomPunch(10, true, 0, "ToonPuff");
+			A_CustomPunch(10, true, 0, "ToonPuff", 128);
 		}
 		HAND B 7;
 		HAND CA 1;

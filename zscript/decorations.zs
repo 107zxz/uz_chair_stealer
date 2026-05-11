@@ -27,26 +27,6 @@ class Bulb : Actor {
 	}
 }
 
-
-class Safe : Actor {
-	Default {
-	+SOLID;
-	+NOGRAVITY;
-	+SHOOTABLE;
-	+NOBLOOD;
-	Painchance 255;
-	Radius 12;
-	}
-	States {
-	Spawn:
-		SAFE A -1;
-		Loop;
-	Pain:
-		TNT1 A 0 A_Remove(AAPTR_DEFAULT);
-		Stop;
-	}
-}
-
 class Table : Actor {
 	Default {
 	+SOLID;
@@ -116,6 +96,14 @@ class WifiExtender : Actor {
 	States {
 	Spawn:
 		WIFI A -1 BRIGHT;
+		Loop;
+	}
+}
+
+class Vase : Actor {
+	States {
+	Spawn:
+		VASE A -1;
 		Loop;
 	}
 }

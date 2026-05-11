@@ -31,6 +31,7 @@ DoomEdNums {
 	6676 = MineChain
 	6677 = ZoobRadiator
 	6678 = Vending
+	6679 = Vase
 }
 
 defaultmap {

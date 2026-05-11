@@ -155,5 +155,8 @@ class NotLuger : Weapon {
 	Flash:
 		LUGE F 3 BRIGHT A_Light2;
 		Goto LightDone;
+	Grab:
+		HAND BCA 1;
+		Goto Ready;
 	}
 }

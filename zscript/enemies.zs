@@ -115,7 +115,7 @@ class ZapZoob : Actor {
 class ZoobRadiator : Actor {
 	Default {
 		+SHOOTABLE;
-		+NOBLOOD
+		+NOBLOOD;
 		Health 1;
 		Height 32;
 		Radius 16;
@@ -139,6 +139,8 @@ class ZoobRadiator : Actor {
 	
 	override void BeginPlay() {
 		Super.BeginPlay();
+		
+		A_PrintBold("ZoobSpawning");
 		
 		A_SpawnItemEx("ZapZoob", 64, 0, 0, 0, 0, 0, 0, SXF_SETMASTER);
 	}

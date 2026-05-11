@@ -5,7 +5,8 @@ version "4.14.3"
 #include "zscript/enemies.zs"
 #include "zscript/hud.zs"
 #include "zscript/npcs.zs"
-
+#include "zscript/effects.zs"
+#include "zscript/items.zs"
 
 class GamePlayer : PlayerPawn {
 	Default {
@@ -30,24 +31,6 @@ class GamePlayer : PlayerPawn {
 		
 		vel.X *= 0.8;
 		vel.Y *= 0.8;
-	}
-}
-
-class ToonPuff : Actor {
-	Default {
-		+NOBLOCKMAP
-		+NOGRAVITY
-		+ALLOWPARTICLES
-		+RANDOMIZE
-		+FORCEXYBILLBOARD
-		Scale 0.3;
-	}
-	States {
-	Spawn:
-		HAND F 3 BRIGHT;
-	Melee:
-		HAND F 3 BRIGHT;
-		Stop;
 	}
 }
 
@@ -79,22 +62,11 @@ class WoodDoor : Actor {
 		Stop;
 	Pain:
 		TNT1 A 0 {
-		
+			// Spawn something nice :)
+			A_SpawnItem("HyperLight", 30, 32);
+			
 			let door_angle = absangle(angle, AngleTo(players[0].mo));
 			if (door_angle > 90) return;
-		
-			// Close all other doors
-			// let doorit = ThinkerIterator.Create("WoodDoor");
-			// Actor door;
-			// while (door = WoodDoor(doorit.Next())) {
-			// 	if (door.bSOLID) continue;
-			// 
-			// 	door.bNOCLIP = true;
-			// 	door.Warp(door, 21, -20, 0, -90);
-			// 	door.bNOCLIP = false;
-			// 	door.bSOLID = true;
-			// 	door.bSHOOTABLE = true;
-			// }
 			
 			bNOCLIP = true;
 			bSOLID = false;
@@ -102,12 +74,28 @@ class WoodDoor : Actor {
 			bNOCLIP = false;
 			
 			bSHOOTABLE = false;
-			
-			// Spawn something nice :)
-			A_SpawnItem("HyperLight", 30, 32);
 		}
 		DOOR A -1;
 		Goto Spawn;
+	}
+	
+	override bool Used(Actor user) {
+		let door_angle = absangle(angle, AngleTo(players[0].mo));
+		if (door_angle > 90) return false;
+		
+		bNOCLIP = true;
+		bSOLID = false;
+		A_Warp(AAPTR_DEFAULT, -20, -21, 0, 90);
+		bNOCLIP = false;
+		
+		bSHOOTABLE = false;
+		
+		// Have some feedback
+		A_Quake(1.5, 4, 0, 400, 0);
+		// Animation
+		players[0].SetPSprite(PSP_WEAPON, players[0].ReadyWeapon.ResolveState("Grab"));
+
+		return true;
 	}
 }
 

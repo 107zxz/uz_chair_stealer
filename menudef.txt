@@ -1,5 +1,0 @@
-LISTMENU "MainMenu" {
-	CenterMenu
-	Selector "-", 0, 0
-	TextItem "New Game", "n", "PlayerclassMenu"
-}
